@@ -1,0 +1,804 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.30.2 with theme Tranquilpeak 0.4.3-BETA">
+    <title>DonkeyCar Test4</title>
+    <meta name="author" content="Rico Castelo">
+    <meta name="keywords" content="neural network, tensorflow, keras">
+
+    <link rel="icon" href="http://www.rico.ai/favicon.png">
+    
+
+    
+    <meta name="description" content="Donkeycar - 50 Epochs, RMSPROP, 10% Dropout, 1e-4 Learning Rate
+Results: Pretty good results. Went off the track in certain areas.
+    config.pyconfig.py     1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+  # TRAINING BATCH_SIZE = 128 TRAIN_TEST_SPLIT = 0.8 # Keras settings TRAINING_MODEL = MODEL_TYPE_CATEGORICAL # Type of Neural Network model IS_TENSORBOARD = True # Create Tensorboard data IS_PLOT_RESULTS = True # Create matplotlib plots IS_EARLY_STOP = False # If no improve, stop training early EARLY_STOP_COUNT = 5 # Number of no changes before stopping LEARNING_RATE = 1.">
+    <meta property="og:description" content="Donkeycar - 50 Epochs, RMSPROP, 10% Dropout, 1e-4 Learning Rate
+Results: Pretty good results. Went off the track in certain areas.
+    config.pyconfig.py     1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+  # TRAINING BATCH_SIZE = 128 TRAIN_TEST_SPLIT = 0.8 # Keras settings TRAINING_MODEL = MODEL_TYPE_CATEGORICAL # Type of Neural Network model IS_TENSORBOARD = True # Create Tensorboard data IS_PLOT_RESULTS = True # Create matplotlib plots IS_EARLY_STOP = False # If no improve, stop training early EARLY_STOP_COUNT = 5 # Number of no changes before stopping LEARNING_RATE = 1.">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="DonkeyCar Test4">
+    <meta property="og:url" content="/donkeycar-test4/">
+    <meta property="og:site_name" content="Rico.AI">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Rico.AI">
+    <meta name="twitter:description" content="Donkeycar - 50 Epochs, RMSPROP, 10% Dropout, 1e-4 Learning Rate
+Results: Pretty good results. Went off the track in certain areas.
+    config.pyconfig.py     1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+  # TRAINING BATCH_SIZE = 128 TRAIN_TEST_SPLIT = 0.8 # Keras settings TRAINING_MODEL = MODEL_TYPE_CATEGORICAL # Type of Neural Network model IS_TENSORBOARD = True # Create Tensorboard data IS_PLOT_RESULTS = True # Create matplotlib plots IS_EARLY_STOP = False # If no improve, stop training early EARLY_STOP_COUNT = 5 # Number of no changes before stopping LEARNING_RATE = 1.">
+    
+      <meta name="twitter:creator" content="@rico_deep_ai">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/ba966c238f4076916568acf4c73deba1?s=640">
+    
+
+    
+      <meta property="og:image" content="http://www.rico.ai/img/donkeycar/test4/loss.png">
+    
+    
+    
+      
+        <meta property="og:image" content="http://www.rico.ai/img/donkeycar/test4/loss.png">
+      
+        <meta property="og:image" content="http://www.rico.ai/img/donkeycar/test4/angle_out_loss.png">
+      
+        <meta property="og:image" content="http://www.rico.ai/img/donkeycar/test4/angle_out_acc.png">
+      
+        <meta property="og:image" content="http://www.rico.ai/img/donkeycar/test4/throttle_out_loss.png">
+      
+        <meta property="og:image" content="http://www.rico.ai/img/donkeycar/test4/throttle_out_acc.png">
+      
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="http://www.rico.ai/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="http://www.rico.ai/">Rico.AI</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="http://www.rico.ai/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/ba966c238f4076916568acf4c73deba1?s=90" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="http://www.rico.ai/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/ba966c238f4076916568acf4c73deba1?s=110" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Rico Castelo</h4>
+        
+          <h5 class="sidebar-profile-bio">I like to build things.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.rico.ai/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.rico.ai/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.rico.ai/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.rico.ai/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.rico.ai/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/ricoai" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.rico.ai/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      DonkeyCar Test4
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2017-11-15T22:12:57-08:00">
+        
+  November 15, 2017
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="http://www.rico.ai/categories/donkeycar">donkeycar</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<p>Donkeycar -  50 Epochs, RMSPROP, 10% Dropout, 1e-4 Learning Rate</p>
+
+<h4 id="results">Results:</h4>
+
+<div class="alert success ">
+  <p>Pretty good results.  Went off the track in certain areas.</p>
+</div>
+
+
+<div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/REoOGzdBbes" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0" title="YouTube Video"></iframe>
+ </div>
+
+
+
+  
+    
+  
+  
+    
+  
+  
+    
+  
+  
+    
+  
+
+
+<figure class="highlight configpy language-configpy">
+  <figcaption>
+    
+      <span>config.py</span><a href="http://www.rico.ai/img/donkeycar/test4/config.py" target="_blank" rel="external">config.py</a>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="code-highlight language-configpy"><code class="configpy"># TRAINING
+BATCH_SIZE = 128
+TRAIN_TEST_SPLIT = 0.8
+
+# Keras settings
+TRAINING_MODEL = MODEL_TYPE_CATEGORICAL     # Type of Neural Network model
+IS_TENSORBOARD = True                       # Create Tensorboard data
+IS_PLOT_RESULTS = True                      # Create matplotlib plots
+IS_EARLY_STOP = False                       # If no improve, stop training early
+EARLY_STOP_COUNT = 5                        # Number of no changes before stopping
+LEARNING_RATE = 1.0e-4                      # Learn rate.  Decrease to fix bias
+EPOCHS = 50                                 # Number of epochs to run.
+DROPOUT_1 = 0.1                             # First Dropout percentage
+DROPOUT_2 = 0.1                             # Second Dropout percentage
+OPTIMIZER = OPTIMIZER_TYPE_RMSPROP          # Type of Optimizer to use.
+LOSS_WEIGHT_ANGLE = 0.9                     # Loss weight for Angles
+LOSS_WEIGHT_THROTTLE = 0.001                # Loss Weight for Throttle              </code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
+<p><img src="http://www.rico.ai/img/donkeycar/test4/loss.png" alt="Test 4 Loss Plot" /></p>
+
+<p><img src="http://www.rico.ai/img/donkeycar/test4/angle_out_loss.png" alt="Test 4 Angle Out Loss Plot" /></p>
+
+<p><img src="http://www.rico.ai/img/donkeycar/test4/angle_out_acc.png" alt="Test 4 Angle Out Accuracy Plot" /></p>
+
+<p><img src="http://www.rico.ai/img/donkeycar/test4/throttle_out_loss.png" alt="Test 4 Throttle Out Loss Plot" /></p>
+
+<p><img src="http://www.rico.ai/img/donkeycar/test4/throttle_out_acc.png" alt="Test 4 Throttle Out Accuracy Plot" /></p>
+
+              
+  
+  
+  
+    <div class="image-gallery">
+      <div class="image-gallery-metabar">
+        <span>Gallery 5 images</span>
+      </div>
+      <div class="image-gallery-photos image-gallery-photos--thumbnail">
+        
+          
+          
+          <div class="photo-box">
+            <a class="photo-box-inner fancybox" data-fancybox-group="gallery-8d45e5a717660b4e57eccab31c0a038b"
+               title="&#34;Loss&#34;" href="http://www.rico.ai/img/donkeycar/test4/loss.png">
+              <img class="photo" src="http://www.rico.ai/img/donkeycar/test4/loss.png" itemprop="image">
+            </a>
+          </div>
+        
+          
+          
+          <div class="photo-box">
+            <a class="photo-box-inner fancybox" data-fancybox-group="gallery-8d45e5a717660b4e57eccab31c0a038b"
+               title="&#34;Angle" href="http://www.rico.ai/img/donkeycar/test4/angle_out_loss.png">
+              <img class="photo" src="http://www.rico.ai/img/donkeycar/test4/angle_out_loss.png" itemprop="image">
+            </a>
+          </div>
+        
+          
+          
+          <div class="photo-box">
+            <a class="photo-box-inner fancybox" data-fancybox-group="gallery-8d45e5a717660b4e57eccab31c0a038b"
+               title="&#34;Angle" href="http://www.rico.ai/img/donkeycar/test4/angle_out_acc.png">
+              <img class="photo" src="http://www.rico.ai/img/donkeycar/test4/angle_out_acc.png" itemprop="image">
+            </a>
+          </div>
+        
+          
+          
+          <div class="photo-box">
+            <a class="photo-box-inner fancybox" data-fancybox-group="gallery-8d45e5a717660b4e57eccab31c0a038b"
+               title="&#34;Throttle" href="http://www.rico.ai/img/donkeycar/test4/throttle_out_loss.png">
+              <img class="photo" src="http://www.rico.ai/img/donkeycar/test4/throttle_out_loss.png" itemprop="image">
+            </a>
+          </div>
+        
+          
+          
+          <div class="photo-box">
+            <a class="photo-box-inner fancybox" data-fancybox-group="gallery-8d45e5a717660b4e57eccab31c0a038b"
+               title="&#34;Throttle" href="http://www.rico.ai/img/donkeycar/test4/throttle_out_acc.png">
+              <img class="photo" src="http://www.rico.ai/img/donkeycar/test4/throttle_out_acc.png" itemprop="image">
+            </a>
+          </div>
+        
+      </div>
+    </div>
+    
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://www.rico.ai/tags/tensorflow/">tensorflow</a>
+
+  <a class="tag tag--primary tag--small" href="http://www.rico.ai/tags/autonmous-vehicle/">autonmous vehicle</a>
+
+  <a class="tag tag--primary tag--small" href="http://www.rico.ai/tags/keras/">keras</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://www.rico.ai/donkeycar-test4/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://www.rico.ai/donkeycar-test4/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://www.rico.ai/donkeycar-test4/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 <a href="https://github.com/ricoai">rico.ai</a>. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://www.rico.ai/donkeycar-test4/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://www.rico.ai/donkeycar-test4/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://www.rico.ai/donkeycar-test4/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.rico.ai%2Fdonkeycar-test4%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3A%2F%2Fwww.rico.ai%2Fdonkeycar-test4%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http%3A%2F%2Fwww.rico.ai%2Fdonkeycar-test4%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/ba966c238f4076916568acf4c73deba1?s=110" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Rico Castelo</h4>
+    
+      <div id="about-card-bio">I like to build things.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Engineer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        San Diego, CA
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://www.rico.ai/donkeycar-test4/">
+                <h3 class="media-heading">DonkeyCar Test4</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Donkeycar - 50 Epochs, RMSPROP, 10% Dropout, 1e-4 Learning Rate
+Results: Pretty good results. Went off the track in certain areas.
+    config.pyconfig.py     1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+  # TRAINING BATCH_SIZE = 128 TRAIN_TEST_SPLIT = 0.8 # Keras settings TRAINING_MODEL = MODEL_TYPE_CATEGORICAL # Type of Neural Network model IS_TENSORBOARD = True # Create Tensorboard data IS_PLOT_RESULTS = True # Create matplotlib plots IS_EARLY_STOP = False # If no improve, stop training early EARLY_STOP_COUNT = 5 # Number of no changes before stopping LEARNING_RATE = 1.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         1 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('http://www.rico.ai/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="http://www.rico.ai/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'http:\/\/www.rico.ai\/donkeycar-test4\/';
+          
+            this.page.identifier = '\/donkeycar-test4\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+    
+  </body>
+</html>
+

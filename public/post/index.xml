@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Rico.AI</title>
+    <link>http://www.rico.ai/post/</link>
+    <description>Recent content in Posts on Rico.AI</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 15 Nov 2017 22:12:57 -0800</lastBuildDate>
+    
+	<atom:link href="http://www.rico.ai/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>DonkeyCar Test4</title>
+      <link>http://www.rico.ai/donkeycar-test4/</link>
+      <pubDate>Wed, 15 Nov 2017 22:12:57 -0800</pubDate>
+      
+      <guid>http://www.rico.ai/donkeycar-test4/</guid>
+      <description>Donkeycar - 50 Epochs, RMSPROP, 10% Dropout, 1e-4 Learning Rate
+Results: Pretty good results. Went off the track in certain areas.
+    config.pyconfig.py     1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+  # TRAINING BATCH_SIZE = 128 TRAIN_TEST_SPLIT = 0.8 # Keras settings TRAINING_MODEL = MODEL_TYPE_CATEGORICAL # Type of Neural Network model IS_TENSORBOARD = True # Create Tensorboard data IS_PLOT_RESULTS = True # Create matplotlib plots IS_EARLY_STOP = False # If no improve, stop training early EARLY_STOP_COUNT = 5 # Number of no changes before stopping LEARNING_RATE = 1.</description>
+    </item>
+    
+  </channel>
+</rss>
